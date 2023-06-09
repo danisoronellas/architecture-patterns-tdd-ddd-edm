@@ -13,5 +13,5 @@ pre-commit:
             run: poetry run flake8
         black:
             run: poetry run black src tests --check
-        unittest:
+        pytest:
             run: make test
