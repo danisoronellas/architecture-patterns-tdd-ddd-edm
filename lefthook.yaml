@@ -1,0 +1,17 @@
+pre-commit:
+    parallel: true
+    commands:
+        poetry-check:
+            glob: "{poetry.lock,pyproject.toml}"
+            run: poetry check
+        poetry-lock:
+            glob: "{poetry.lock}"
+            run: poetry lock --check
+        autoflake:
+            run: find . -name '*.py' | xargs poetry run autoflake --in-place --remove-all-unused-imports --remove-unused-variables
+        flake8:
+            run: poetry run flake8
+        black:
+            run: poetry run black src tests --check
+        unittest:
+            run: make test
